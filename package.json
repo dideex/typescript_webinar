@@ -9,6 +9,7 @@
   "scripts": {
     "clean": "scripty",
     "test": "scripty",
+    "jest": "jest ./exercises/accounts --env=node",
     "test:ci": "scripty",
     "build:dev": "scripty",
     "build:dist": "scripty"
