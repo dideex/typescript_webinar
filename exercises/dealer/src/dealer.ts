@@ -12,6 +12,32 @@ function shuffleArray(a: any[]) {
   }
 }
 
-// export class Dealer {
+export enum Suit {
+  Club,
+  Diamond,
+  Heart,
+  Spade
+}
 
-// }
+type Card = [Suit, number];
+
+export class Dealer {
+  cards: Card[] = [];
+  constructor() {
+    for (let i = 12; i--; ) {
+      this.cards.push([Suit.Heart, i]);
+      this.cards.push([Suit.Club, i]);
+      this.cards.push([Suit.Spade, i]);
+      this.cards.push([Suit.Diamond, i]);
+    }
+  }
+  readCard(card: Card) {
+    console.log(` Your card is ${card[0]} of ${card[1]}  `);
+  }
+  dealHand(num: number) {
+    for (let i = num; i--; ) this.cards.pop();
+  }
+  getLength() {
+    return this.cards.length;
+  }
+}
