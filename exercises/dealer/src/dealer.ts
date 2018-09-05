@@ -13,31 +13,42 @@ function shuffleArray(a: any[]) {
 }
 
 export enum Suit {
-  Club,
-  Diamond,
-  Heart,
-  Spade
+  Club, Diamond, Heart, Spade
 }
 
-type Card = [Suit, number];
+export enum CardNumber {
+  Ace, Two, Three, Four, Five,
+  Six, Seven, Eight, Nine, Ten,
+  Jack, Queen, King
+}
+
+type Card = [Suit, CardNumber];
+
+function setupDeck(): Card[] {
+  let cards: Card[] = []
+  for( let s = 0; s < Object.keys(Suit).length; s +=2 ) {
+    for(let n = 0; s < Object.keys(CardNumber).length; n += 2){
+      cards.push([s/2, n/2])
+    }
+  }
+  return cards
+}
 
 export class Dealer {
   cards: Card[] = [];
   constructor() {
-    for (let i = 12; i--; ) {
-      this.cards.push([Suit.Heart, i]);
-      this.cards.push([Suit.Club, i]);
-      this.cards.push([Suit.Spade, i]);
-      this.cards.push([Suit.Diamond, i]);
-    }
+    this.cards = setupDeck()
   }
-  readCard(card: Card) {
-    console.log(` Your card is ${card[0]} of ${card[1]}  `);
+  readCard(card: Card): string {
+    const [suit, cardNumber] = card
+    return `Your card is ${CardNumber[cardNumber]} of ${Suit[suit]}`
   }
-  dealHand(num: number) {
-    for (let i = num; i--; ) this.cards.pop();
+  dealHand(numCard: number): Card[] {
+    if(numCard > this.getLength()) throw new Error('Not')
+    if(numCard < 0) throw new Error('Not a positive nubmer')
+     return this.cards.splice(this.getLength() - numCard, numCard)
   }
-  getLength() {
+  getLength(): number {
     return this.cards.length;
   }
 }
