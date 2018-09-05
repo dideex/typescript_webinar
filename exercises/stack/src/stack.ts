@@ -14,6 +14,10 @@ interface IStackNode<T>{
 export class Stack<T> implements IStack<T> {
   private head: IStackNode<T>
 
+  constructor() {
+    this.head = {} as IStackNode<T>
+  }
+
   push(item: T): IStack<T>;
   push(items: T[]): IStack<T>;
   push(items: T | T[]): IStack<T> {
