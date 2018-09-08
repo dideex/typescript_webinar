@@ -1,6 +1,9 @@
 import * as React from 'react';
-export const PlaceSearchResult: React.SFC<any> = () => {
+import { PlaceDetails } from '../../autocomplete-sfc/src/utils/places';
+
+export const PlaceSearchResult: React.SFC<PlaceDetails> = props => {
+  console.log(" LOG ___ props ", props )
   return (
-    <div></div>
+    <div>{props.name}</div>
   );
 };
