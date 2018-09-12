@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PlaceSearchResultList } from './place-search-result-list';
 import { PlaceDetails, PlaceSummary, fetchPlaceSummaries, fetchPlaceDetails } from './utils/places';
 
-interface IAppState {
+export interface IAppState {
   results: PlaceDetails[];
   inProgress: boolean;
   term: string; 
@@ -10,7 +10,7 @@ interface IAppState {
 
 export class App extends React.Component<{}, IAppState> {
   constructor() {
-    super();
+    super({});
     this.state = {
       results: [],
       term: '',
@@ -26,7 +26,7 @@ export class App extends React.Component<{}, IAppState> {
   render() {
     console.log(this.state.results);
     return (
-      <PlaceSearchResultList />
+      <PlaceSearchResultList {...this.state} handleSearch={() => {this.trySearch}}/>
     );
   }
 };
