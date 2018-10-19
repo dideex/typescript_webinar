@@ -6,8 +6,8 @@
 export function* getFibSequence(): IterableIterator<number> {
   let first = 1
   let second = 1
-  let sum = first + second
   while(true) {
+    let sum = first + second
     yield sum
     first = second
     second = sum
